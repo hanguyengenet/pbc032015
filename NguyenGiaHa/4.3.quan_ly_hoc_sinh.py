@@ -1,9 +1,70 @@
 #python
 #Chuong trinh quan ly hoc sinh
 running = True
-d={}
 l=[]
 i=0
+#Functions
+def Add():
+    '''Ham them hoc sinh moi'''
+    d={}
+    d['id'] = len(l)
+    d['hoten'] = raw_input('Ho ten hoc sinh: ')
+    d['bod'] = raw_input('Ngay sinh (dd/mm/yyyy): ')
+    d['lop'] = raw_input ('Lop: ')
+    d['qq'] = raw_input('Que quan: ')
+    try:
+        l.append(d)
+        return True
+    except:
+        return False
+    finally:
+        d={}
+def Search():
+    '''Ham tim kiem hoc sinh'''
+    s = raw_input('Ho ten hoc sinh can tim: ')
+    c=0
+    for i in range(len(l)):
+        if l[i]['hoten']==s:
+            print str(l[i]['id'])+' '+l[i]['hoten']+' '+l[i]['bod']+' '+l[i]['qq']
+            c=c+1
+    if c==0:
+        print 'Khong tim thay, hay thu lai.' 
+def Modify():
+    '''Ham chinh sua thong tin hoc sinh'''
+    s = input('Nhap id hoc sinh can sua: ')
+    c=0
+    for i in range(len(l)):
+        if l[i]['id']==s:
+            d['id'] = s
+            d['hoten'] = raw_input('Ho ten hoc sinh: ')
+            d['bod'] = raw_input('Ngay sinh (dd/mm/yyyy): ')
+            d['lop'] = raw_input ('Lop: ')
+            d['qq'] = raw_input('Que quan: ')
+            l.remove(l[i])
+            l.insert(i,d)
+            c=c+1
+                
+    if c==0:
+        print 'Khong tim thay, hay thu lai.'
+
+def Del():
+    '''Ham xoa thong tin hoc sinh'''
+    s = input('Nhap id hoc sinh can xoa: ')
+    c=0
+    for i in range(len(l)):
+        if l[i]['id']==s:
+            l.remove(l[i])
+            c=c+1
+    if c==0:
+        print 'Khong tim thay, hay thu lai.' 
+def Print():
+    print ''
+    print 'ID|Ho ten|Ngay sinh|Que quan'
+    print '----------------------------'
+    for i in range(len(l)):
+        print str(l[i]['id'])+' '+l[i]['hoten']+' '+l[i]['bod']+' '+l[i]['qq']
+#Main            
+
 try:
     while running:
         print '-----------------'
@@ -17,62 +78,30 @@ try:
         answer = raw_input('Hay chon (1-5): ')
         if answer =='1':
             #Add
-            d['id'] = len(l)
-            d['hoten'] = raw_input('Ho ten hoc sinh: ')
-            d['bod'] = raw_input('Ngay sinh (dd/mm/yyyy): ')
-            d['lop'] = raw_input ('Lop: ')
-            d['qq'] = raw_input('Que quan: ')
-            l.append(d)
-            d={}
+            if Add()==True:
+                print 'Da them thanh cong!'
+            else:
+                print 'False'
             
         elif answer == '2':
             #Search
-            s = raw_input('Ho ten hoc sinh can tim: ')
-            c=0
-            for i in range(len(l)):
-                if l[i]['hoten']==s:
-                    print str(l[i]['id'])+' '+l[i]['hoten']+' '+l[i]['bod']+' '+l[i]['qq']
-                    c=c+1
-            if c==0:
-                print 'Khong tim thay, hay thu lai.' 
+            Search()
                 
         elif answer == '3':
             #Modify
-            s = input('Nhap id hoc sinh can sua: ')
-            c=0
-            for i in range(len(l)):
-                if l[i]['id']==s:
-                    d['id'] = s
-                    d['hoten'] = raw_input('Ho ten hoc sinh: ')
-                    d['bod'] = raw_input('Ngay sinh (dd/mm/yyyy): ')
-                    d['lop'] = raw_input ('Lop: ')
-                    d['qq'] = raw_input('Que quan: ')
-                    l.remove(l[i])
-                    l.insert(i,d)
-                    c=c+1
-                
-            if c==0:
-                print 'Khong tim thay, hay thu lai.' 
+            Modify()
         elif answer == '4':
             #Del
-            s = input('Nhap id hoc sinh can xoa: ')
-            c=0
-            for i in range(len(l)):
-                if l[i]['id']==s:
-                    l.remove(l[i])
-                    c=c+1
-            if c==0:
-                print 'Khong tim thay, hay thu lai.' 
+            Del()
         elif answer == '5':
-            
-            for i in range(len(l)):
-               print str(l[i]['id'])+' '+l[i]['hoten']+' '+l[i]['bod']+' '+l[i]['qq']
-            #l.sort()
-            #print l
-
+            #Print
+            Print()
         elif answer == '6':
-            running = False
-            print 'Quit!'
+            a=raw_input('Ban muon thoat(y/n): ')
+            if a=='y':
+                running = False
+            else:
+                running = True
         
 except:
         print 'Error occurred!'
