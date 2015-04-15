@@ -1,1 +1,60 @@
 
+1.error
+ten file .py trung voi thu vien python
+->python dung file ngay tai thu muc->roi moi den file trong thu vien
+2.notes
+- os.path.isfile
+- os.access(filename, os.R_OK):
+- len(sys.argv) ==3
+
+3.Ctr doc log file va cung cap thong tin doan chat:
+- list ra cac nick trong log
+- user chon nick->hien ra doan chat cua nick do
+#python
+#Doc logfile
+import sys
+import os
+f=sys.argv[1]
+h=open(f,'r')
+#print h
+for l in h:
+    s=(l.strip()).split()
+    s1=(s[3]+s[4])
+    nick=s1
+    print nick
+    
+4. Viet module configloader, có comment trong file
+- comment: startwith
+- dau cach: strip
+
+#python
+#Doc logfile
+import sys
+import os
+f=sys.argv[1]
+h=open(f,'r')
+#print h
+d={}
+for l in h:
+    if l.startswith('#')== False and l!='\n':
+        s=l.strip()
+        s=s.split()
+        d[s[0]]=s[2]
+        s=[]
+print d
+
+
+--main.cfg
+#comment
+#database = 123
+
+
+ db_server = 192.168.0.11
+db_port = 1521
+db_sid = DB60
+db_user = ALERT_CALL_PHONE
+db_password = 123456
+getsql = select * from abc abc
+
+
+    
