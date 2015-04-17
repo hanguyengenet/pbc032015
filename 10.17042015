@@ -1,0 +1,118 @@
+1. Chua bai configloader
+- S->Doc tung dong->Strip tung dong->check dau # o dau | la 1 dong ('\n')-n>split(' = ')->List
+
+[0]=List[0]
+
+- *: split(' = ')
+- 
+def loadConfig(self):
+	logging.info("Begin loading config params ...")
+	for line in self.f:
+		line = line.strip()
+		if not line.startwith("#"):
+			ls = line.split(" = ") #at least 2 space
+			if len(ls) ==2:
+				self.config[ls[0].strip()] = ls[1].strip()
+				logging.info
+- bai split nick: http://prntscr.com/6usnh5
+- 
+2. Class
+- loi = Nguoi()
+-D/n ham: def chay(self,vantoc)
+	bien self dc define nhung ko can goi: loi.chay(vantoc=3)
+-luon luon co bien self
+- class People:
+	pcount = 0
+	def __init__(self, name='Tran van A'):
+		self.name = name
+		People.pcount=+1
+	def getpop(self):
+		print People.pcount
+a = People()
+pcount=class variables
+getpop=class methos
+
+- class People:
+	pcount = 0
+	def __init__(self, name='Tran van A'):
+		self.name = name
+		People.pcount=+1
+	def getpop(self):
+		print 'Dan so hien co la: ', People.pcount
+-import class_people as x
+x=reload(x) #reload lai class sau khi chinh sua
+->reload module, nhung phai khai bao lai a:
+a=x.People()
+a.getpop()->Dan so hien co la: 0
+
++class __init__():
+	- #contructor
+	- 2 dau __: hàm đặc biệt chỉ để python chạy, hoặc override
+	- 
+
+- class People:
+	pcount = 0
+	def __init__(self, name1='Tran van A'):
+		self.name = name1
+		print '%s da duoc sinh ra'%self.name
+		People.pcount=+ 1
+	def getpop(self):
+		print 'Dan so hien co la: ', People.pcount
+
+-->tại sao lại self.name: vì name là instance variable (self=this)
+-->nếu bỏ dòng "self.name = name" + %self.name thành %name
+	print a.name() ->false, ko biết thuộc tính name là gì
+* Bài tập: 
+	+ Viết vd về lớp quả bóng: x,y,z, bay(), lan(),sobong
+	+ Viết ctr quản lý nhân sự dưới dạng OOP
+
+-class qua_bong:
+	sobong = 0
+	def __init__(self,x=0,y=0,z=0):
+		#qua_bong.sobong= + 1
+		qua_bong.sobong= qua_bong.sobong+ 1
+		self.x=x
+		self.y=y
+		self.z=z
+		print 'So bong hien co: ', qua_bong.sobong
+	def bay(self):
+		if self.x!=0:
+			print 'True!'
+		else:
+			print 'False!'
+	def lan(self):
+		if self.z!=0:
+			print 'Bong dang lan!'
+		else:
+			print 'Bong dang dung yen!'
+	def dembong(self):
+		print 'So bong hien co: ', qua_bong.sobong
+
+-->>>> a=qua_bong()
+So bong hien co:  1
+>>> a.x=10
+>>> a.bay()
+Bong dang bay!
+>>> a.x=0
+>>> a.bay()
+>>>
+		
+* Kiểu in %s: 
+	print '%s da duoc sinh ra %d'%(self.name, People.pcount)
+	#s:string, d:integer
++ __del__()
+	- del được gọi khi đối tượng bị hủy
+	- python thu hồi bộ nhớ khi xóa 1 đối tượng
++ OOP: lập trình hướng đối tượng:
+	- kế thừa
+	- đa hình
+	- đóng gói
+ * kế thừa: 
+	- khai báo xong lớp quả bóng
+	- vd: nikeball, adidasball kế thừa từ ball: toàn quyền sử dụng thuộc tính của ball mà ko 
+
+cần khai báo
+	- có thể đa kế thừa
+	- các thuộc tính trùng nhau->override
+ 	- muốn lớp con thực hiện hàm __init__ của cha: super(Child,self).__init__()
+
