@@ -1,0 +1,24 @@
+#python
+#Doc logfile
+import sys
+import os
+f=sys.argv[1]
+h=open(f,'r')
+#print h
+d={}
+for l in h:
+    
+    if l.startswith('#')== False and l!='\n':
+        s=l.strip()
+        s=s.split(' = ')
+        d[s[0]]=s[1]
+        s=[]
+print 'db_server= '+d['db_server']
+print 'db_port= '+d['db_port']
+print 'db_sid= '+d['db_sid']
+print 'db_user= '+d['db_user']
+print 'db_password= '+d['db_password']
+print 'getsql= '+d['getsql']
+
+
+    
